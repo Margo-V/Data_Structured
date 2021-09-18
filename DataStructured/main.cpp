@@ -59,12 +59,9 @@ public:
 	{
 		if (Head == nullptr) return push_front(Data);
 		Element* Temp = Head;
-		while (Temp->pNext)
-		{
-			Temp = Temp->pNext;
-		}
-		Element* New = new Element(Data);
-		Temp->pNext = New;
+		while (Temp->pNext)		
+			Temp = Temp->pNext;		
+		Temp->pNext = new Element(Data);
 		size++;
 	}
 	void insert(int index, int Data)
