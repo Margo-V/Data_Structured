@@ -4,13 +4,14 @@ using namespace std;
 #define tab "\t"
 #define delimitr "\n======================\n"
 
+template<typename T>
 class Element
 {
 	Element* pPrev;
 	Element* pNext;
-	int Data;
+	T Data;
 public:
-	Element(int Data, Element* pNext=nullptr, Element* pPrev=nullptr) :
+	Element(T Data, Element* pNext=nullptr, Element* pPrev=nullptr) :
 		Data(Data), pNext(pNext), pPrev(pPrev)
 	{
 #ifdef DEBUG
@@ -27,6 +28,7 @@ public:
 	friend class List;
 };
 
+template<typename T>
 class List
 {
 	Element* Head;
@@ -102,12 +104,12 @@ public:
 #endif // DEBUG
 
 	}
-	List(const initializer_list<int>& il) :List()
+	List(const initializer_list<T>& il) :List()
 	{
-		for (int const* it = il.begin(); it != il.end(); it++)		
+		for (T const* it = il.begin(); it != il.end(); it++)		
 			push_back(*it);
 	}
-	List(const List& other) :List()
+	List(const List<T>& other) :List()
 	{
 		cout << "LCopyConstructor:" << tab << this << endl;
 		for (Element* Temp = other.Head; Temp; Temp = Temp->pNext)push_back(Temp->Data);
@@ -124,7 +126,7 @@ public:
 	}
 
 	//				Operators:
-	List& operator=(const List& other)
+	List<T>& operator=(const List<T>& other)
 	{
 		if (this == &other)return *this;
 		while (Head)pop_front();
@@ -138,7 +140,7 @@ public:
 
 	//				Adding elements:
 
-	void push_front(int Data)
+	void push_front(T Data)
 	{
 		if (Head ==nullptr && Tail == nullptr) {
 			Head = Tail = new Element(Data);
@@ -153,7 +155,7 @@ public:
 		
 		size++;
 	}
-	void push_back(int Data)
+	void push_back(T Data)
 	{
 		if (!Head && !Tail)
 		{
@@ -272,8 +274,10 @@ void main()
 	//cout << endl;
 
 
-	List list = { 0, 1, 1, 2, 3, 5, 8, 13, 21 };
+	List<int> list = { 0, 1, 1, 2, 3, 5, 8, 13, 21 };
 	for (int i : list)
+	{
 		cout << i << tab;
+	}
 	cout << endl;
 }
