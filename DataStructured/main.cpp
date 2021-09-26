@@ -20,6 +20,52 @@ class ForwardList
 	Element* Head;
 	size_t size;
 public:
+	class Iterator 
+	{
+		Element* Temp;
+	public:
+		Iterator(Element* Temp = nullptr) :Temp(Temp)
+		{
+			cout << "ItConstructor:" << tab << this << endl;
+		}
+		~Iterator()
+		{
+			cout << "ItDestructor:" << tab << endl;
+		}
+		Iterator& operator++()//Prefix increment
+		{
+			Temp = Temp->pNext;
+			return *this;
+		}
+		Iterator operator++(int) 
+		{
+			Iterator old = *this;
+			Temp = Temp->pNext;
+			return old;
+		}
+		bool operator==(const Iterator& other)const
+		{
+			return this->Temp == other.Temp;
+		}
+		bool operator!=(const Iterator& other)const
+		{
+			return this->Temp != other.Temp;
+		}
+		int& operator*()
+		{
+			return Temp->Data;
+		}
+	};
+	Iterator begin()
+	{
+		return this->Head;
+	}
+	Iterator end()
+	{
+		return nullptr;
+	}
+
+
 	ForwardList()
 	{
 		cout << "F-LConstr" << endl;
@@ -139,7 +185,7 @@ public:
 void main() 
 {
 	setlocale(LC_ALL, "rus");
-	ForwardList list;
+	/*ForwardList list;
 	int size, index, Data;
 	cout << "Введите количество элементов списка: "; cin >> size;
 	for (int i = 0; i < size; i++)
@@ -147,7 +193,7 @@ void main()
 		list.push_back(rand() % 15);
 	}
 	list.print();
-	cout << delimitr;
+	cout << delimitr;*/
 
 #ifdef TEST
 	cout << "Введите индекс: "; cin >> index;
@@ -159,12 +205,29 @@ void main()
 
 
 
-	cout << "Введите индекс: "; cin >> index;
+	/*cout << "Введите индекс: "; cin >> index;
 	list.erase(index);
-	list.print();
+	list.print();*/
 #ifdef INITIALIZE_L
 	ForwardList list2 = { 3, 5, 8, 12, 23 };
 	list2.print();
 #endif // INITIALIZE_L
 
+	ForwardList list = { 3, 5, 8, 13, 21 };
+	list.print();
+	cout << "Range-based for:" << endl;
+	for (int i : list)
+		cout << i << tab;
+	cout << endl;
+	cout << delimitr << endl;
+
+
+
+	//cout << "Original for:" << endl;
+	//for (ForwardList::Iterator it = list.begin(); it != list.end(); it++)
+	////for (ForwardList::Iterator it = list.begin(), end = list.end(); it != end; ++it)
+	//{
+	//	cout << *it << tab;
+	//}
+	//cout << delimitr << endl;
 }
