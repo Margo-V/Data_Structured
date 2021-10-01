@@ -4,35 +4,31 @@ using namespace std;
 #define tab "\t"
 #define delimitr "\n======================\n"
 
-template<typename T>
-class Element
-{
-	Element* pPrev;
-	Element* pNext;
-	T Data;
-public:
-	Element(T Data, Element* pNext=nullptr, Element* pPrev=nullptr) :
-		Data(Data), pNext(pNext), pPrev(pPrev)
-	{
-#ifdef DEBUG
-		cout << "EConstructor:" << tab << endl;
-#endif // DEBUG
-	}
-	~Element()
-	{
-#ifdef DEBUG
-		cout << "EDestructor:" << tab << this << endl;
-#endif // DEBUG
-	}
-
-	friend class List;
-};
 
 template<typename T>
 class List
 {
-	Element* Head;
-	Element* Tail;
+	class Element
+	{
+		Element* pPrev;
+		Element* pNext;
+		T Data;
+	public:
+		Element(T Data, Element* pNext = nullptr, Element* pPrev = nullptr) :
+			Data(Data), pNext(pNext), pPrev(pPrev)
+		{
+#ifdef DEBUG
+			cout << "EConstructor:" << tab << endl;
+#endif // DEBUG
+		}
+		~Element()
+		{
+#ifdef DEBUG
+			cout << "EDestructor:" << tab << this << endl;
+#endif // DEBUG
+		}
+		friend class List;
+	}*Head, *Tail ;
 	size_t size;
 public:
 	class Iterator
