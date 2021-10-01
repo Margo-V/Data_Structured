@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ForwardList", "DataStructur
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "List", "List\List.vcxproj", "{AB11ACF1-9172-4822-A608-F175CEC80772}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Recursion__", "Recursion__\Recursion__.vcxproj", "{276EB285-DEAD-458A-87D3-22DF5527B158}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{AB11ACF1-9172-4822-A608-F175CEC80772}.Release|x64.Build.0 = Release|x64
 		{AB11ACF1-9172-4822-A608-F175CEC80772}.Release|x86.ActiveCfg = Release|Win32
 		{AB11ACF1-9172-4822-A608-F175CEC80772}.Release|x86.Build.0 = Release|Win32
+		{276EB285-DEAD-458A-87D3-22DF5527B158}.Debug|x64.ActiveCfg = Debug|x64
+		{276EB285-DEAD-458A-87D3-22DF5527B158}.Debug|x64.Build.0 = Debug|x64
+		{276EB285-DEAD-458A-87D3-22DF5527B158}.Debug|x86.ActiveCfg = Debug|Win32
+		{276EB285-DEAD-458A-87D3-22DF5527B158}.Debug|x86.Build.0 = Debug|Win32
+		{276EB285-DEAD-458A-87D3-22DF5527B158}.Release|x64.ActiveCfg = Release|x64
+		{276EB285-DEAD-458A-87D3-22DF5527B158}.Release|x64.Build.0 = Release|x64
+		{276EB285-DEAD-458A-87D3-22DF5527B158}.Release|x86.ActiveCfg = Release|Win32
+		{276EB285-DEAD-458A-87D3-22DF5527B158}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
