@@ -81,6 +81,7 @@ public:
 		}
 
 	};
+
 	Iterator begin()
 	{
 		return Head;
@@ -93,6 +94,27 @@ public:
 	{
 		return this->size;
 	}
+
+	//class ReverseIterator
+	//{
+	//	Element* Temp;
+	//public:
+	//	ReverseIterator(Element*Temp = nullptr) :Temp(Temp){}
+	//	~ReverseIterator(){}
+	////		Operators:
+
+	//	
+	//
+
+	//};
+	//ReverseIterator begin_r()
+	//{
+	//	return Tail;
+	//}
+	//ReverseIterator end_r()
+	//{
+	//	return nullptr;
+	//}
 	List()
 	{
 		size = 0;
@@ -169,10 +191,29 @@ public:
 			size++;
 		}
 	}
-	/*void insert(int index, int Data)
+	void insert(int index, int Data)
 	{
-		
-	}*/
+		if (index == 0)return push_front(Data);
+		if (index >= size)return push_back(Data);
+		Element* Temp;
+		if (index < size / 2)
+		{
+			Temp = Head;
+			for (int i = 0; i < index - 1; i++)
+				Temp = Temp->pNext;
+		}
+		else {
+			Temp = Tail;
+			for (int i = size; i > index; i--)
+				Temp = Temp->pPrev;
+		}
+		Element* New = new Element(Data);
+		New->pNext = Temp->pNext;
+		New->pPrev = Temp;
+		Temp->pNext->pPrev = New;
+		Temp->pNext = New;
+		size++;
+	}
 
 	//				Removing elements:
 	void pop_front()
@@ -201,6 +242,33 @@ public:
 		Tail->pNext = nullptr;
 		size--;
 	}
+	void erase(int index)
+	{
+		Element* Temp;
+		if (index == 0)return pop_front();
+		if (index >= size)return pop_back();
+		if (index < size / 2)
+		{
+			Temp = Head;
+			for (int i = 0; i < index-1; i++)
+				Temp = Temp->pNext;
+			Element* del = Temp->pNext;
+			Temp->pNext = Temp->pNext->pNext;
+			Temp->pNext->pPrev = del->pPrev;
+			delete del;
+		}
+		else
+		{
+			Temp = Tail;
+			for (int i = size - 1; i > index; i--)
+				Temp = Temp->pPrev;
+			Element* del = Temp->pPrev;
+			Temp->pPrev = Temp->pPrev->pPrev;
+			Temp->pPrev->pNext = del->pNext;
+			delete del;
+		}
+		size--;
+	}
 
 	//				Methods:
 	void print()const
@@ -220,14 +288,14 @@ public:
 		}
 	}
 };
-//#define BASE_CHECK
+#define BASE_CHECK
 //#define ITERATORS_CHECK
 
 void main()
 {
 	setlocale(LC_ALL, "rus");
 #ifdef BASE_CHECK
-	int n;
+	int n, value, index;
 	cout << "Введите размер списка: "; cin >> n;
 	List list;
 	for (int i = 0; i < n; i++)
@@ -238,9 +306,15 @@ void main()
 
 	list.print();
 	cout << delimitr;
-	list.pop_front();
+	cout << "Введите значение добавляемого элемента: "; cin >>value;
+	cout << "Введите индекс добавляемого элемента: "; cin >> index;
+	list.insert(index, value);
 	list.print();
-	list.print_reverse();  
+	cout << delimitr;
+	cout << "Введите индекс удаляемого элемента: "; cin >> index;
+	list.erase(index);
+	list.print();
+	//list.print_reverse();  
 #endif // BASE_CHECK
 
 #ifdef ITERATORS_CHECK
@@ -256,6 +330,10 @@ void main()
 	{
 		cout << *it << tab;
 	}
+	/*for (List::ReverseIterator it = list2.begin(); it != list2.end(); it--)
+	{
+		cout << *it << tab;
+	}*/
 	list2.print_reverse();
 #endif // ITERATORS_CHECK
 
@@ -272,8 +350,8 @@ void main()
 	//cout << endl;
 
 
-	List list = { 0, 1, 1, 2, 3, 5, 8, 13, 21 };
+	/*List list = { 0, 1, 1, 2, 3, 5, 8, 13, 21 };
 	for (int i : list)
 		cout << i << tab;
-	cout << endl;
+	cout << endl;*/
 }
