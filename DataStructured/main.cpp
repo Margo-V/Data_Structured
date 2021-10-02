@@ -4,21 +4,21 @@ using namespace std;
 #define tab "\t"
 #define delimitr "\n===========================\n"
 
-class Element
-{
-	int Data;
-	Element* pNext;
-public:
-	Element(int Data, Element* pNext = nullptr) : Data(Data), pNext(pNext) { cout << "EConstr" << endl; }
-	~Element(){ cout << "EDestr" << endl; }
-	friend class ForwardList;
-};
 
-
+template <typename T>
 class ForwardList 
 {
-	Element* Head;
 	size_t size;
+
+	class Element
+	{
+		int Data;
+		Element* pNext;
+	public:
+		Element(T Data, Element* pNext = nullptr) : Data(Data), pNext(pNext) { cout << "EConstr" << endl; }
+		~Element(){ cout << "EDestr" << endl; }
+		friend class ForwardList;
+	}*Head;
 public:
 	class Iterator 
 	{
@@ -66,21 +66,21 @@ public:
 	}
 
 
-	ForwardList()
+	ForwardList<T>()
 	{
 		cout << "F-LConstr" << endl;
 		Head = nullptr;
 		size = 0;
 	}
 
-	ForwardList(const ForwardList& other) :ForwardList()
+	ForwardList<T>(const ForwardList<T>& other) :ForwardList<T>()
 	{
 		for (Element* Temp = other.Head; Temp; Temp->pNext)
 		{
 			push_back(Temp->Data);
 		}
 	}
-	ForwardList(const initializer_list<int>& il) :ForwardList()
+	ForwardList<T>(const initializer_list<int>& il) :ForwardList()
 	{
 		//cout << typeid(il.begin()).name() << endl;
 		for (int const* it= il.begin(); it != il.end(); it++)
@@ -94,14 +94,14 @@ public:
 		cout << "F-LDestr" << endl;
 	}
 	//					Adding elements:
-	void push_front(int Data)
+	void push_front(T Data)
 	{
 		Element* New = new Element(Data);
 		New->pNext = Head;
 		Head = New;
 		size++;
 	}
-	void push_back(int Data)
+	void push_back(T Data)
 	{
 		if (Head == nullptr) return push_front(Data);
 		Element* Temp = Head;
@@ -110,7 +110,7 @@ public:
 		Temp->pNext = new Element(Data);
 		size++;
 	}
-	void insert(int index, int Data)
+	void insert(int index, T Data)
 	{
 		if (Head == 0)return push_front(Data);
 		if (index >= size)return push_back(Data);
@@ -158,7 +158,7 @@ public:
 	}
 
 	//					Operators:
-	ForwardList& operator=(const ForwardList& other)
+	ForwardList<T>& operator=(const ForwardList<T>& other)
 	{
 		while (Head)pop_front();
 		for (Element* Temp = other.Head; Temp; Temp->pNext)
@@ -213,7 +213,7 @@ void main()
 	list2.print();
 #endif // INITIALIZE_L
 
-	ForwardList list = { 3, 5, 8, 13, 21 };
+	ForwardList<int> list = { 3, 5, 8, 13, 21 };
 	list.print();
 	cout << "Range-based for:" << endl;
 	for (int i : list)

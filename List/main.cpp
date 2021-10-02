@@ -291,6 +291,9 @@ public:
 #define BASE_CHECK
 //#define ITERATORS_CHECK
 
+
+//https://github.com/Margo-V/Data_Structured/blob/master/List/main.cpp - erase, insert
+
 void main()
 {
 	setlocale(LC_ALL, "rus");
