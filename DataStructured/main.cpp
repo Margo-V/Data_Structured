@@ -80,7 +80,7 @@ public:
 			push_back(Temp->Data);
 		}
 	}
-	ForwardList<T>(const initializer_list<int>& il) :ForwardList()
+	ForwardList<T>(const initializer_list<T>& il) :ForwardList()
 	{
 		//cout << typeid(il.begin()).name() << endl;
 		for (int const* it= il.begin(); it != il.end(); it++)
