@@ -32,11 +32,43 @@ public:
 	~Tree()
 	{
 		cout << "TDestructor:" << tab << this << endl;
+		clear(Root); 
 	}
 	Node* getRoot()const
 	{
 		return Root;
 	}
+
+	void insert(int Data)
+	{
+		insert(Data, Root);
+	}
+	int minValue()const
+	{
+		return minValue(Root);
+	}
+	int maxValue()const
+	{
+		return maxValue(Root);
+	}
+	int count()const
+	{
+		return count(Root);
+	}
+	int sum()const
+	{
+		return sum(Root);
+	}
+	double avarage()
+	{
+		return (double)sum(Root) / count(Root);
+	}
+	void print()const
+	{
+		print(Root);
+		cout << endl;
+	}
+private:
 	void insert(int Data, Node* Root)
 	{
 		if (this->Root == nullptr)
@@ -82,6 +114,13 @@ public:
 		cout << Root->Data << tab;
 		print(Root->pRight);
 	}
+	void clear(Node* Root)
+	{
+		if (Root == nullptr)return;
+		clear(Root->pLeft);
+		clear(Root->pRight);
+		delete Root;
+	}
 };
 
 void main()
@@ -89,10 +128,15 @@ void main()
 	setlocale(LC_ALL, "ru");
 
 	Tree tree;
-	tree.insert(57, nullptr);
-	tree.insert(56, tree.getRoot());
-	tree.insert(86, tree.getRoot());
-	tree.insert(73, tree.getRoot());
-	tree.print(tree.getRoot());
-	cout << endl << tree.count(tree.getRoot()) << endl;
+	int n = 0;
+	cout << "Введите количество элементов:" << tab; cin >> n;
+	for (int i = 0; i < n; i++)
+	{
+		tree.insert(rand()%100);
+	}
+	cout << "Максимальный элемент в дереве: " << tab << tree.maxValue() << endl;
+	cout << "Минимальный элемент в дереве: " << tab << tree.minValue() << endl;
+	cout << "Количество элементов в дереве: " << tab << tree.count() << endl;
+	cout << "Сумма элементов в дереве: " << tab << tree.sum() << endl;
+	cout << "Среднее арифметическое элементов в дереве: " << tab << tree.avarage() << endl;
 }
