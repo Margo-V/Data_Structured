@@ -172,22 +172,22 @@ void main()
 	setlocale(LC_ALL, "ru");
 #ifdef BASE_CHECK
 	int n;
-	cout << "Ââåäèòå ðàçìåð äåðåâà: "; cin >> n;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ€Ð°Ð·Ð¼ÐµÑ€ Ð´ÐµÑ€ÐµÐ²Ð°: "; cin >> n;
 	Tree tree;
 	for (int i = 0; i < n; i++)
 		tree.insert(rand() % 100);
 	tree.print();
-	cout << "Ìèíèìàëüíîå çíà÷åíèå â äåðåâå: " << tree.minValue() << endl;
-	cout << "Ìèíèìàëüíîå çíà÷åíèå â äåðåâå: " << tree.maxValue() << endl;
-	cout << "Êîëè÷åñòâî ýëåìåíòîâ â äåðåâå: " << tree.count() << endl;
-	cout << "Ñóììà ýëåìåíòîâ â äåðåâå: " << tree.sum() << endl;
-	cout << "Ñðåäíåå àðèôìåòè÷åñêîå ýëåìåíòîâ â äåðåâå: " << tree.avg() << endl;
+	cout << "ÐœÐ¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ð¾Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð² Ð´ÐµÑ€ÐµÐ²Ðµ: " << tree.minValue() << endl;
+	cout << "ÐœÐ¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ð¾Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð² Ð´ÐµÑ€ÐµÐ²Ðµ: " << tree.maxValue() << endl;
+	cout << "ÐšÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð² Ð² Ð´ÐµÑ€ÐµÐ²Ðµ: " << tree.count() << endl;
+	cout << "Ð¡ÑƒÐ¼Ð¼Ð° ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð² Ð² Ð´ÐµÑ€ÐµÐ²Ðµ: " << tree.sum() << endl;
+	cout << "Ð¡Ñ€ÐµÐ´Ð½ÐµÐµ Ð°Ñ€Ð¸Ñ„Ð¼ÐµÑ‚Ð¸Ñ‡ÐµÑÐºÐ¾Ðµ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð² Ð² Ð´ÐµÑ€ÐµÐ²Ðµ: " << tree.avg() << endl;
 #endif // BASE_CHECK
 
 	Tree tree = { 50, 25, 80, 16, 32, 64, 85, 58, 75, 84, 91 };
 	tree.print();
 	int value;
-	cout << "Ââåäèòå óäàëÿåìîå çíà÷åíèå: "; cin >> value;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÑƒÐ´Ð°Ð»ÑÐµÐ¼Ð¾Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ: "; cin >> value;
 	tree.erase(value);
 	tree.print();
 }
